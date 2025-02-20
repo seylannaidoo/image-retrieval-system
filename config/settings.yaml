@@ -1,0 +1,13 @@
+data_dir: "data"
+
+model:
+  name: "openai/clip-vit-base-patch32"
+  image_size: 224
+
+dataset:
+  max_images: 500
+
+web:
+  host: "localhost"
+  port: 5000
+  max_results: 20

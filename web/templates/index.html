@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="search-container">
+    <!-- Optional: Night Mode Control -->
+    <div class="accessibility-controls" role="region" aria-label="Display Options">
+        <button
+            type="button"
+            id="nightModeToggle"
+            class="accessibility-button"
+            aria-pressed="false"
+            aria-label="Toggle Night Mode">
+            Night Mode
+        </button>
+    </div>
+
+    <h1>Image Retrieval System</h1>
+    <p class="description" id="searchDescription">Enter a text description to find matching images from our dataset.</p>
+
+    <form id="searchForm" class="search-form" role="search" aria-labelledby="searchDescription">
+        <div class="input-group">
+            <label for="query" class="sr-only">Search Query</label>
+            <input type="text"
+                   id="query"
+                   name="query"
+                   placeholder="Example: a sunset over mountains"
+                   required
+                   aria-required="true">
+
+            <div class="slider-container">
+                <label for="top_k">Number of results:</label>
+                <input type="range"
+                       id="top_k"
+                       name="top_k"
+                       min="1"
+                       max="20"
+                       value="6"
+                       aria-valuemin="1"
+                       aria-valuemax="20"
+                       aria-valuenow="6">
+                <span id="top_k_value" aria-live="polite">6</span>
+            </div>
+        </div>
+        <button type="submit" id="searchButton">Search</button>
+    </form>
+
+    <div id="loading" class="loading" style="display: none;" role="status" aria-live="polite">
+        Searching...
+    </div>
+
+    <div id="error" class="error" style="display: none;" role="alert"></div>
+
+    <div id="results" class="results-grid" role="region" aria-label="Search Results">
+        <!-- Results will be dynamically added here -->
+    </div>
+</div>
+
+<!-- Optional: Keyboard Navigation Instructions -->
+<div class="keyboard-instructions sr-only">
+    <p>Use Tab key to navigate between elements.</p>
+    <p>In search results:</p>
+    <ul>
+        <li>Use arrow keys to move between images</li>
+        <li>Press Enter to view image details</li>
+    </ul>
+</div>
+{% endblock %}
